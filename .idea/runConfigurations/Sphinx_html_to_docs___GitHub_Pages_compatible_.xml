@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Sphinx html to docs/ (GitHub Pages compatible)" type="docs" factoryName="Sphinx task">
+    <module name="browser_driver" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SDK_HOME" value="Z:\Users\sburke\Dropbox\dev\browser_driver\features\v1\browser_driver\venv\Scripts\python.exe" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="IS_MODULE_SDK" value="false" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="docutils_input_file" value="Z:\Users\sburke\Dropbox\dev\browser_driver\features\v1\browser_driver\docs_source" />
+    <option name="docutils_output_file" value="Z:\Users\sburke\Dropbox\dev\browser_driver\features\v1\browser_driver\docs" />
+    <option name="docutils_params" value="" />
+    <option name="docutils_task" value="html" />
+    <option name="docutils_open_in_browser" value="false" />
+    <method />
+  </configuration>
+</component>
