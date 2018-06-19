@@ -42,5 +42,17 @@ class BrowserDriverTests(unittest2.TestCase):
         url = "https://www.google.com/"
         self.driver.url = url
         self.assertEqual(url, self.driver.url)
+
+    def test_find_element_by_xpath(self):
+        """Tests that the browser can find an element using an xPath statement."""
+        url = "https://www.google.com/"
+        self.driver.url = url
         element = self.driver.find_element_by_xpath('//*[@id="hplogo"]')
+        self.assertIsNotNone(element)
+
+    def test_find_element_by_id(self):
+        """Tests that the browser can find an element using an id value."""
+        url = "https://www.google.com/"
+        self.driver.url = url
+        element = self.driver.find_element_by_id("hplogo")
         self.assertIsNotNone(element)

@@ -46,6 +46,16 @@ class WebBrowser():
 
         return element
 
+    def find_element_by_id(self, id):
+        element = self.driver.find_element_by_xpath(id)
+
+        return element
+
+    def find_element_by_name(self, name):
+        element = self.driver.find_element_by_xpath(name)
+
+        return element
+
     def quit(self):
         """This is a wrapper method for the native Selenium functionality.  While a user could all
         WebBrowser.driver.quit() this design allows for additional code to be done in a uniform way across all tests
