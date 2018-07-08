@@ -4,7 +4,7 @@
 from setuptools import setup
 
 setup(author='Shawn J Burke',
-      author_email='shawn.burke@teamburke.com',
+      author_email='pypi.python@teamburke.com',
       description='Browser Driver is a Wrapper for Selenium Web Automation',
       long_description=open('README.rst').read(),
       name='sjb.browser_driver',
