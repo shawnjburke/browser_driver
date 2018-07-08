@@ -88,3 +88,18 @@ class BrowserDriverTests(unittest2.TestCase):
         self.browser.url = url
         element = self.browser.check_by_id("horns")
         self.assertTrue(element.is_selected())
+
+    def test_send_keys(self):
+        """This test ensures the class can send keys to a text box"""
+        url = "file://{0}/test_html.html".format(os.getcwd()).replace('\\', '/')
+        self.browser = browser.WebBrowser("Firefox")
+        self.browser.url = url
+        test_string = "test by id"
+        element = self.browser.send_keys_by_id("text_by_id", test_string)
+        self.assertEqual(element.get_attribute("value"), test_string)
+        test_string = "test by name"
+        element = self.browser.send_keys_by_name("send_keys_by_name", test_string)
+        self.assertEqual(element.get_attribute("value"), test_string)
+        test_string = "test by xpath"
+        element = self.browser.send_keys_by_xpath('//*[@id="text_by_xpath"]', test_string)
+        self.assertEqual(element.get_attribute("value"), test_string)

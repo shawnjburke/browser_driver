@@ -133,6 +133,31 @@ class WebBrowser():
 
         return element_in_view
 
+    def send_keys(self, element, keys_to_type):
+        """When passed an element found to be clickable, will calls the send keys method to type the passed string in
+        the textbox."""
+        element.send_keys(keys_to_type)
+
+        return element
+
+    def send_keys_by_id(self, element_id, keys_to_type):
+        element = self.find_element_clickable((by.ID, element_id))
+        self.send_keys(element, keys_to_type)
+
+        return element
+
+    def send_keys_by_name(self, element_name, keys_to_type):
+        element = self.find_element_clickable((by.NAME, element_name))
+        self.send_keys(element, keys_to_type)
+
+        return element
+
+    def send_keys_by_xpath(self, element_xpath, keys_to_type):
+        element = self.find_element_clickable((by.XPATH, element_xpath))
+        self.send_keys(element, keys_to_type)
+
+        return element
+
     def quit(self):
         """This is a wrapper method for the native Selenium functionality.  While a user could all
         WebBrowser.driver.quit() this design allows for additional code to be done in a uniform way across all tests
