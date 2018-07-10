@@ -5,6 +5,7 @@ from browser_driver import browser
 
 class BrowserDriverTests(unittest2.TestCase):
     def setUp(self):
+        browser_list = ['chrome', 'firefox', '']
         self.browser = browser.WebBrowser()
 
     def tearDown(self):
@@ -43,6 +44,24 @@ class BrowserDriverTests(unittest2.TestCase):
         url = "https://www.google.com/"
         self.browser.url = url
         self.assertEqual(url, self.browser.url)
+
+    def test_find_element_by_link_text(self):
+        """Tests that the browser can find an element using a partial link text."""
+        url = "file://{0}/test_html.html".format(os.getcwd())
+        url.replace('\\', '/')
+        self.browser.url = url
+        element = self.browser.find_element_by_partial_link_text("Testing Goat")
+        url = "http://www.obeythetestinggoat.com/how-to-get-selenium-to-wait-for-page-load-after-a-click.html"
+        self.assertEqual(element.get_attribute("href"), url)
+
+    def test_find_element_by_partial_link_text(self):
+        """Tests that the browser can find an element using a partial link text."""
+        url = "file://{0}/test_html.html".format(os.getcwd())
+        url.replace('\\', '/')
+        self.browser.url = url
+        element = self.browser.find_element_by_partial_link_text("Goat")
+        url = "http://www.obeythetestinggoat.com/how-to-get-selenium-to-wait-for-page-load-after-a-click.html"
+        self.assertEqual(element.get_attribute("href"), url)
 
     def test_find_element_by_xpath(self):
         """Tests that the browser can find an element using an xPath statement."""
@@ -84,7 +103,6 @@ class BrowserDriverTests(unittest2.TestCase):
         screen area"""
         url = "file://{0}/test_html.html".format(os.getcwd())
         url.replace('\\', '/')
-        self.browser = browser.WebBrowser("Firefox")
         self.browser.url = url
         element = self.browser.check_by_id("horns")
         self.assertTrue(element.is_selected())
@@ -92,7 +110,6 @@ class BrowserDriverTests(unittest2.TestCase):
     def test_send_keys(self):
         """This test ensures the class can send keys to a text box"""
         url = "file://{0}/test_html.html".format(os.getcwd()).replace('\\', '/')
-        self.browser = browser.WebBrowser("Firefox")
         self.browser.url = url
         test_string = "test by id"
         element = self.browser.send_keys_by_id("text_by_id", test_string)

@@ -5,6 +5,7 @@ For instance a browser change once required us to scroll objects in to view to f
 it did not."""
 
 import logging
+import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By as by
 from selenium.webdriver.support.ui import WebDriverWait, Select
@@ -12,39 +13,55 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
 
 
-class WebBrowser():
-    def __init__(self, browser="Chrome"):
+class WebBrowser:
+    def __init__(self, browser=None):
         """Setup the class.  Add logging.  Create an instance of the selenium driver, for which this class is
         primarily a wrapper around."""
         self.log = logging.getLogger(__name__)
         self.driver_timeout = 10
 
+        # If not specified, choose from installed browsers
+        if browser is None:
+            browser = "random"
+        self.driver = self.browser_factory(browser)
+
+    def browser_factory(self, browser):
+        """This method will return a selenium driver object to manipulate the browser.  The method can provide a pseudo
+        random creation of standard, visible, browsers."""
+
+        # Limit the random choice of browser to what is known to be installed and visible
+        random_browser_list = ['chrome', 'firefox']
+        if browser.lower() == "random":
+            browser = random.choice(random_browser_list)
+
         # Create a browser instance to manipulate.  Be flexible in casing and terminology with the fall through
         #   logic for the browser indicated.  By default, use Chrome.
         if browser is None:
-            self.driver = webdriver.Chrome()
+            driver = webdriver.Chrome()
             self.log.debug("Created instance of Chrome browser for testing.")
         elif browser.lower() == "chrome":
-            self.driver = webdriver.Chrome()
+            driver = webdriver.Chrome()
             self.log.debug("Created instance of Chrome browser for testing.")
         elif browser.lower() == "firefox":
-            self.driver = webdriver.Firefox()
+            driver = webdriver.Firefox()
             self.log.debug("Created instance of FireFox browser for testing.")
         elif browser.lower() == "edge":
-            self.driver = webdriver.Edge()
+            driver = webdriver.Edge()
             self.log.debug("Created instance of Edge browser for testing.")
         elif browser.lower() == "phantomjs":
-            self.driver = webdriver.PhantomJS()
+            driver = webdriver.PhantomJS()
             self.log.debug("Created instance of PhantomJS browser for testing.")
         elif browser.lower() == "internet explorer":
-            self.driver = webdriver.Ie()
+            driver = webdriver.Ie()
             self.log.debug("Created instance of Internet Explorer browser for testing.")
         elif browser.lower() == "ie":
-            self.driver = webdriver.Ie()
+            driver = webdriver.Ie()
             self.log.debug("Created instance of Internet Explorer browser for testing.")
         else:
             # If no browser is specified, first statement should handle.  This is fallback.  Maybe if browser=""
-            self.driver = webdriver.Chrome()
+            driver = webdriver.Chrome()
+
+        return driver
 
     def check_by_xpath(self, xpath):
         """Checks a checkbox, finding it by an xpath statement.  If not selected will click() the box.  Otherwise
@@ -123,6 +140,17 @@ class WebBrowser():
 
     def find_element_by_name(self, name):
         element = self.find_element((by.NAME, name))
+
+        return element
+
+    def find_element_by_link_text(self, link_text):
+        element = self.find_element((by.LINK_TEXT, link_text))
+
+        return element
+
+    def find_element_by_partial_link_text(self, partial_link_text):
+        """Partial Link Text is case sensitive"""
+        element = self.find_element((by.PARTIAL_LINK_TEXT, partial_link_text))
 
         return element
 
