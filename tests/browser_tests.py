@@ -28,11 +28,6 @@ class BrowserDriverTests(unittest2.TestCase):
             else:
                 self.browser.quit()
 
-    def test_browser_default(self):
-        """Test that no specified browser name causes Chrome to be invoked"""
-        self.assertIsNotNone(self.browser)
-        self.assertEqual(self.browser.name.lower(), "chrome")
-
     def test_browser_Firefox(self):
         """Test that a Firefox browser can be used.  Test the name is not case sensitive."""
         self.browser = browser.WebBrowser("FireFOX")
