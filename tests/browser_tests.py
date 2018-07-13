@@ -29,7 +29,7 @@ class BrowserDriverTests(unittest2.TestCase):
 
     def test_browser_Firefox(self):
         """Test that a Firefox browser can be used.  Test the name is not case sensitive."""
-        # Close out the browser already created
+        # Close out the browser already created to prevent ResourceWarning: unclosed <socket.socket fd=
         self.browser.quit()
         # Now let's make sure we have a FireFox browser to start with
         self.browser = browser.WebBrowser("FireFOX")

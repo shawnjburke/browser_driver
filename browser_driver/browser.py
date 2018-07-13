@@ -6,6 +6,7 @@ it did not."""
 
 import logging
 import random
+from contextlib import contextmanager
 from selenium import webdriver
 from selenium.webdriver.common.by import By as by
 from selenium.webdriver.support.ui import WebDriverWait, Select
@@ -104,6 +105,20 @@ class WebBrowser:
             if self.scroll_into_view(element):
                 element.click()
 
+    @contextmanager
+    def click_to_new_page(self):
+        """This is a wrapper for clicking an HTML hyperlink.  This method is specific to clicking a non-javascript link
+        that loads a new page.  The method adds functionality to wait for the new page to load before retruning.  this
+        addresses a common challenge.
+
+        Thanks to http://www.obeythetestinggoat.com/how-to-get-selenium-to-wait-for-page-load-after-a-click.html
+        """
+        # TODO: Need to add the actual click statement in, then wait for the page load.
+        page_leaving = self.find_element_by_tag_name("html")
+
+        yield
+        WebDriverWait(self, self.driver_timeout).until(ec.staleness_of(page_leaving))
+
     def find_element(self, locator):
         """Wrapper for finding an element using the wait technique.  This should help make the retrieval of the element
         more compatible with AJAX style web design.
@@ -151,6 +166,11 @@ class WebBrowser:
     def find_element_by_partial_link_text(self, partial_link_text):
         """Partial Link Text is case sensitive"""
         element = self.find_element((by.PARTIAL_LINK_TEXT, partial_link_text))
+
+        return element
+
+    def find_element_by_tag_name(self, tag_name):
+        element = self.find_element((by.TAG_NAME, tag_name))
 
         return element
 
