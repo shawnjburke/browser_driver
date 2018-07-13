@@ -5,71 +5,90 @@ For instance a browser change once required us to scroll objects in to view to f
 it did not."""
 
 import logging
+import random
 from selenium import webdriver
+from selenium.webdriver.common.by import By as by
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.common.exceptions import TimeoutException
 
 
-class WebBrowser():
-    def __init__(self, browser="Chrome"):
+class WebBrowser:
+    def __init__(self, browser=None):
         """Setup the class.  Add logging.  Create an instance of the selenium driver, for which this class is
         primarily a wrapper around."""
         self.log = logging.getLogger(__name__)
+        self.driver_timeout = 10
+
+        # If not specified, choose from installed browsers
+        if browser is None:
+            browser = "random"
+        self.driver = self.browser_factory(browser)
+
+    def browser_factory(self, browser):
+        """This method will return a selenium driver object to manipulate the browser.  The method can provide a pseudo
+        random creation of standard, visible, browsers."""
+
+        # Limit the random choice of browser to what is known to be installed and visible
+        random_browser_list = ['chrome', 'firefox']
+        if browser.lower() == "random":
+            browser = random.choice(random_browser_list)
 
         # Create a browser instance to manipulate.  Be flexible in casing and terminology with the fall through
         #   logic for the browser indicated.  By default, use Chrome.
         if browser is None:
-            self.driver = webdriver.Chrome()
+            driver = webdriver.Chrome()
             self.log.debug("Created instance of Chrome browser for testing.")
         elif browser.lower() == "chrome":
-            self.driver = webdriver.Chrome()
+            driver = webdriver.Chrome()
             self.log.debug("Created instance of Chrome browser for testing.")
         elif browser.lower() == "firefox":
-            self.driver = webdriver.Firefox()
+            driver = webdriver.Firefox()
             self.log.debug("Created instance of FireFox browser for testing.")
         elif browser.lower() == "edge":
-            self.driver = webdriver.Edge()
+            driver = webdriver.Edge()
             self.log.debug("Created instance of Edge browser for testing.")
         elif browser.lower() == "phantomjs":
-            self.driver = webdriver.PhantomJS()
+            driver = webdriver.PhantomJS()
             self.log.debug("Created instance of PhantomJS browser for testing.")
         elif browser.lower() == "internet explorer":
-            self.driver = webdriver.Ie()
+            driver = webdriver.Ie()
             self.log.debug("Created instance of Internet Explorer browser for testing.")
         elif browser.lower() == "ie":
-            self.driver = webdriver.Ie()
+            driver = webdriver.Ie()
             self.log.debug("Created instance of Internet Explorer browser for testing.")
         else:
             # If no browser is specified, first statement should handle.  This is fallback.  Maybe if browser=""
-            self.driver = webdriver.Chrome()
+            driver = webdriver.Chrome()
+
+        return driver
 
     def check_by_xpath(self, xpath):
         """Checks a checkbox, finding it by an xpath statement.  If not selected will click() the box.  Otherwise
         will leave the state unchanged.  This method does NOT toggle state of the checkbox.
         """
-        element = self.driver.find_element_by_xpath(xpath)
+        element = self.find_element_clickable((by.XPATH, xpath))
         if not element.is_selected():
-            if self.scroll_into_view(element):
-                element.click()
+            element.click()
 
-    def check_by_id(self, id):
+    def check_by_id(self, element_id):
         """Checks a checkbox, finding it by an html id value.  If not selected will click() the box.  Otherwise
         will leave the state unchanged.  This method does NOT toggle state of the checkbox.
         """
-        element = self.driver.find_element_by_id(id)
+        element = self.find_element_clickable((by.ID, element_id))
 
         if not element.is_selected():
             # Check it
-            if self.scroll_into_view(element):
-                element.click()
+            element.click()
 
         return element
 
-    def uncheck_by_id(self, id):
+    def uncheck_by_id(self, element_id):
         """Removes check on a checkbox, finding it by an html id.  If selected will click() the box to deselect.
         Otherwise will leave the state unchanged.  This method does NOT toggle state of the checkbox.
         """
-        element = self.driver.find_element_by_id(id)
+        element = self.find_element_clickable((by.ID, element_id))
+
         if element.is_selected():
             # Uncheck it
             if self.scroll_into_view(element):
@@ -79,40 +98,93 @@ class WebBrowser():
         """Removes check on a checkbox, finding it by an xpath statement.  If selected will click() the box to deselect.
         Otherwise will leave the state unchanged.  This method does NOT toggle state of the checkbox.
         """
-        element = self.driver.find_element_by_xpath(xpath)
+        element = self.find_element_clickable((by.XPATH, xpath))
         if element.is_selected():
             # Uncheck it
             if self.scroll_into_view(element):
                 element.click()
 
+    def find_element(self, locator):
+        """Wrapper for finding an element using the wait technique.  This should help make the retrieval of the element
+        more compatible with AJAX style web design.
+
+            http://selenium-python.readthedocs.io/waits.html
+        """
+        try:
+            element = WebDriverWait(self.driver, self.driver_timeout).until(
+                ec.visibility_of_element_located(locator))
+
+            return element
+        except TimeoutException:
+            self.log.error("The element was not found after {0}".format(self.driver_timeout))
+
+    def find_element_clickable(self, locator):
+        """Wrapper for finding if an element is clickable using the wait technique."""
+        try:
+            element = WebDriverWait(self.driver, self.driver_timeout).until(
+                ec.element_to_be_clickable(locator))
+
+            return element
+        except TimeoutException:
+            self.log.error("The element was not found after {0}".format(self.driver_timeout))
+
     def find_element_by_xpath(self, xpath):
-        element = self.driver.find_element_by_xpath(xpath)
+        element = self.find_element((by.XPATH, xpath))
 
         return element
 
     def find_element_by_id(self, element_id):
-        element = self.driver.find_element_by_id(element_id)
+        element = self.find_element((by.ID, element_id))
 
         return element
 
     def find_element_by_name(self, name):
-        element = self.driver.find_element_by_xpath(name)
+        element = self.find_element((by.NAME, name))
+
+        return element
+
+    def find_element_by_link_text(self, link_text):
+        element = self.find_element((by.LINK_TEXT, link_text))
+
+        return element
+
+    def find_element_by_partial_link_text(self, partial_link_text):
+        """Partial Link Text is case sensitive"""
+        element = self.find_element((by.PARTIAL_LINK_TEXT, partial_link_text))
 
         return element
 
     def scroll_into_view(self, element):
-        element_in_view = False
-        
-        try:
-            wait = WebDriverWait(self.driver, 0.5)  # Timeout quickly, 1/2 second, if the element is not clickable
-            wait.until(ec.element_to_be_clickable(element))
-            element_in_view = True
-        except Exception as e:
-            # Let's bring it into view
-            self.driver.execute_script("return arguments[0].scrollIntoView();", element)
-            element_in_view = True
+        # Let's bring it into view
+        self.driver.execute_script("return arguments[0].scrollIntoView();", element)
+        element_in_view = True
 
         return element_in_view
+
+    def send_keys(self, element, keys_to_type):
+        """When passed an element found to be clickable, will calls the send keys method to type the passed string in
+        the textbox."""
+        element.send_keys(keys_to_type)
+
+        return element
+
+    def send_keys_by_id(self, element_id, keys_to_type):
+        element = self.find_element_clickable((by.ID, element_id))
+        self.send_keys(element, keys_to_type)
+
+        return element
+
+    def send_keys_by_name(self, element_name, keys_to_type):
+        element = self.find_element_clickable((by.NAME, element_name))
+        self.send_keys(element, keys_to_type)
+
+        return element
+
+    def send_keys_by_xpath(self, element_xpath, keys_to_type):
+        element = self.find_element_clickable((by.XPATH, element_xpath))
+        self.send_keys(element, keys_to_type)
+
+        return element
 
     def quit(self):
         """This is a wrapper method for the native Selenium functionality.  While a user could all

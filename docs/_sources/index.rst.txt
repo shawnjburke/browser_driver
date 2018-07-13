@@ -11,6 +11,8 @@ Welcome! Docs 4 Browser Driver
    :maxdepth: 2
    :caption: Contents:
 
+.. include:: ../README.rst
+
 
 ###################
 Indices and tables
