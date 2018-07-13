@@ -5,7 +5,6 @@ from browser_driver import browser
 
 class BrowserDriverTests(unittest2.TestCase):
     def setUp(self):
-        browser_list = ['chrome', 'firefox', '']
         self.browser = browser.WebBrowser()
 
     def tearDown(self):
@@ -30,6 +29,9 @@ class BrowserDriverTests(unittest2.TestCase):
 
     def test_browser_Firefox(self):
         """Test that a Firefox browser can be used.  Test the name is not case sensitive."""
+        # Close out the browser already created
+        self.browser.quit()
+        # Now let's make sure we have a FireFox browser to start with
         self.browser = browser.WebBrowser("FireFOX")
         self.assertIsNotNone(self.browser)
         self.assertEqual(self.browser.name.lower(), "firefox")
@@ -115,3 +117,4 @@ class BrowserDriverTests(unittest2.TestCase):
         test_string = "test by xpath"
         element = self.browser.send_keys_by_xpath('//*[@id="text_by_xpath"]', test_string)
         self.assertEqual(element.get_attribute("value"), test_string)
+
