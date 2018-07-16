@@ -15,10 +15,23 @@ from selenium.common.exceptions import TimeoutException
 
 
 class WebBrowser:
-    def __init__(self, browser=None):
+    _url = None  # type: str
+
+    def __init__(self, browser=None, logger=None):
         """Setup the class.  Add logging.  Create an instance of the selenium driver, for which this class is
-        primarily a wrapper around."""
-        self.log = logging.getLogger(__name__)
+        primarily a wrapper around.
+
+        Property logger originally added because an expected hierarchy was not established when running from
+        UnitTest2.TestCase.
+
+        """
+        if logger is None:
+            self.log = logging.getLogger(__name__)
+        else:
+            # self.log = logger
+            self.log = logging.getLogger("{0}.{1}".format(logger.name, __name__))
+
+        self.log.debug("Logger {0} obtained for usage by {1}".format(self.log.name, self.name))
         self.driver_timeout = 10
 
         # If not specified, choose from installed browsers
@@ -61,6 +74,8 @@ class WebBrowser:
         else:
             # If no browser is specified, first statement should handle.  This is fallback.  Maybe if browser=""
             driver = webdriver.Chrome()
+            self.log.debug("No browser name specified. Created instance of {0} browser for testing." \
+                           .format(browser.name))
 
         return driver
 
@@ -106,18 +121,25 @@ class WebBrowser:
                 element.click()
 
     @contextmanager
-    def click_to_new_page(self):
+    def click_to_new_page(self, element):
         """This is a wrapper for clicking an HTML hyperlink.  This method is specific to clicking a non-javascript link
         that loads a new page.  The method adds functionality to wait for the new page to load before retruning.  this
         addresses a common challenge.
 
         Thanks to http://www.obeythetestinggoat.com/how-to-get-selenium-to-wait-for-page-load-after-a-click.html
         """
-        # TODO: Need to add the actual click statement in, then wait for the page load.
+        element.click()
         page_leaving = self.find_element_by_tag_name("html")
-
         yield
         WebDriverWait(self, self.driver_timeout).until(ec.staleness_of(page_leaving))
+
+    def click_to_new_page_by_id(self, html_id):
+        """This method finds an element by id, clicks it, and waits for the new page to load before returning."""
+        element = self.find_element_by_id(html_id)
+
+        self.click_to_new_page(element)
+
+        return element
 
     def find_element(self, locator):
         """Wrapper for finding an element using the wait technique.  This should help make the retrieval of the element
@@ -131,7 +153,9 @@ class WebBrowser:
 
             return element
         except TimeoutException:
-            self.log.error("The element was not found after {0}".format(self.driver_timeout))
+            msg = "A search by {0}, for element with {0}={1}, timed out after {2} seconds" \
+                .format(locator[0], locator[1], self.driver_timeout)
+            self.log.error(msg)
 
     def find_element_clickable(self, locator):
         """Wrapper for finding if an element is clickable using the wait technique."""
@@ -237,4 +261,9 @@ class WebBrowser:
         WebBrowser.driver.name this design allows for code to be done in a uniform way across all tests
         code, and it is more intuitive than having to know this object contains another object called driver."""
 
-        return self.driver.name
+        # before the driver is established the logger will attempt to access a name.
+        try:
+            return self.driver.name
+        except AttributeError:
+            return __name__
+

@@ -1,11 +1,62 @@
+import logging
+import logging.handlers
 import unittest2
 import os
+import sys
 from browser_driver import browser
 
 
 class BrowserDriverTests(unittest2.TestCase):
+    @classmethod
+    def log_directory(cls, create_not_found=True):
+        """Returns the directory where the log file should be stored
+
+            create_not_found being True will create the directory if it doesn't exist
+        """
+        project_name = "browser_driver"
+
+        # Are we running from within PyCharm or starting from command line at the root directory?
+        if os.getcwd().find("tests"):
+            base_dir = os.getcwd().replace("\\tests", "")
+        else:
+            base_dir = os.getcwd()
+
+        source_dir = "{0}\\{1}".format(base_dir, project_name)
+        test_dir = "{0}\\{1}".format(base_dir, "tests")
+        test_log_dir = "{0}\\{1}".format(test_dir, "logs")
+
+        if not os.path.exists(test_log_dir) and create_not_found:
+            os.makedirs(test_log_dir)
+
+        return test_log_dir
+
     def setUp(self):
-        self.browser = browser.WebBrowser()
+        self.browser = browser.WebBrowser(logger=self.log)
+
+    @classmethod
+    def setUpClass(cls):
+        cls.log = logging.getLogger(__name__)
+
+        stdout_log = logging.StreamHandler(sys.stdout)
+        stdout_log.setFormatter(logging.Formatter(fmt=""))
+        # stdout_log.setLevel(logging.INFO)
+        stdout_log.setLevel(logging.DEBUG)
+
+        file_log_path = cls.log_directory(True)
+        file_log = logging.handlers.TimedRotatingFileHandler(filename="{0}\{1}.log".
+                                                                      format(file_log_path,
+                                                                             cls.__getattribute__(cls, "__name__")),
+                                                                      when="D", interval=1, backupCount=30)
+        file_log.setFormatter(logging.Formatter(fmt="%(asctime)s | %(levelname)s\t| %(message)s"))
+        file_log.setLevel(logging.DEBUG)
+
+        cls.log.addHandler(file_log)
+        cls.log.addHandler(stdout_log)
+        # Important to set overall logger to catch all statements which it can then route to handlers
+        cls.log.setLevel(logging.DEBUG)
+
+        # For some reason, at least running in PyCharm, a newline is not created.  Explicitly adding it.
+        cls.log.debug("Logger {0} obtained for usage by {1} \n".format(cls.log.name, cls.__name__))
 
     def tearDown(self):
         """A set of actions to be used by all unittest2.TestCase.tearDown() methods.
@@ -18,12 +69,12 @@ class BrowserDriverTests(unittest2.TestCase):
                         helper_selenium_functions.py.tear_down(self)
         """
         if self._outcome.errors[1][1] is None:
-            print("{0}() completed successfully and no errors were observed.".format(self._testMethodName))
+            self.log.info("{0}() completed successfully and no errors were observed.".format(self._testMethodName))
             self.browser.quit()
         else:
-            print("WARNING: Errors observed in execution of {0}().".format(self._testMethodName))
+            self.log.warn("WARNING: Errors observed in execution of {0}().".format(self._testMethodName))
             if self.browser.name is not "phantomjs":
-                print("Did not call driver.quit() leaving {0} browser open for debugging.".format(self.browser.name))
+                self.log.warn("Did not call driver.quit() leaving {0} browser open for debugging.".format(self.browser.name))
             else:
                 self.browser.quit()
 
@@ -35,6 +86,16 @@ class BrowserDriverTests(unittest2.TestCase):
         self.browser = browser.WebBrowser("FireFOX")
         self.assertIsNotNone(self.browser)
         self.assertEqual(self.browser.name.lower(), "firefox")
+
+    # @unittest2.skip("test definition in progress")
+    def test_click_to_new_page(self):
+        """This test will click a link and wait for the page to load."""
+        url = "file://{0}/test_html.html".format(os.getcwd()).replace('\\', '/')
+        self.browser.url = url
+        self.browser.click_to_new_page_by_id("mozilla")
+        element = self.browser.find_element_by_id("license")
+
+        self.log.info(self.browser.url)
 
     def test_navigate(self):
         """Tests that the browser navigates to a page."""
