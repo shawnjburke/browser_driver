@@ -39,8 +39,8 @@ class BrowserDriverTests(unittest2.TestCase):
 
         stdout_log = logging.StreamHandler(sys.stdout)
         stdout_log.setFormatter(logging.Formatter(fmt=""))
-        # stdout_log.setLevel(logging.INFO)
-        stdout_log.setLevel(logging.DEBUG)
+        stdout_log.setLevel(logging.INFO)
+        # stdout_log.setLevel(logging.DEBUG)
 
         file_log_path = cls.log_directory(True)
         file_log = logging.handlers.TimedRotatingFileHandler(filename="{0}\{1}.log".
