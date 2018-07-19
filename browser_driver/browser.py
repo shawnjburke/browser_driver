@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
 
 
-class WebBrowser:
+class WebBrowser(object):
     _url = None  # type: str
 
     def __init__(self, browser=None, logger=None):
