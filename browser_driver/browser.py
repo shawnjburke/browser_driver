@@ -57,7 +57,12 @@ class WebBrowser:
             driver = webdriver.Chrome()
             self.log.debug("Created instance of Chrome browser for testing.")
         elif browser.lower() == "firefox":
-            driver = webdriver.Firefox()
+            # https://github.com/SeleniumHQ/selenium/issues/3884
+            # Bug in the Firefox+Gecko+Python combination throws:  Unable to find a matching set of capabilities
+            # The fix is to use the capabilities object to launch the browser.
+            capabilities = webdriver.DesiredCapabilities.FIREFOX
+            capabilities["marionett"] = False
+            driver = webdriver.Firefox(capabilities=capabilities)
             self.log.debug("Created instance of FireFox browser for testing.")
         elif browser.lower() == "edge":
             driver = webdriver.Edge()
