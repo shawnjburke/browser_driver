@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
 
 
-class WebBrowser:
+class WebBrowser(object):
     _url = None  # type: str
 
     def __init__(self, browser=None, logger=None):
@@ -57,7 +57,12 @@ class WebBrowser:
             driver = webdriver.Chrome()
             self.log.debug("Created instance of Chrome browser for testing.")
         elif browser.lower() == "firefox":
-            driver = webdriver.Firefox()
+            # https://github.com/SeleniumHQ/selenium/issues/3884
+            # Bug in the Firefox+Gecko+Python combination throws:  Unable to find a matching set of capabilities
+            # The fix is to use the capabilities object to launch the browser.
+            capabilities = webdriver.DesiredCapabilities.FIREFOX
+            capabilities["marionett"] = False
+            driver = webdriver.Firefox(capabilities=capabilities)
             self.log.debug("Created instance of FireFox browser for testing.")
         elif browser.lower() == "edge":
             driver = webdriver.Edge()
@@ -143,7 +148,8 @@ class WebBrowser:
 
     def find_element(self, locator):
         """Wrapper for finding an element using the wait technique.  This should help make the retrieval of the element
-        more compatible with AJAX style web design.
+        more compatible with AJAX style web design.  Using locator syntax to access locator[] and the By and Value
+        portions in logging an error.
 
             http://selenium-python.readthedocs.io/waits.html
         """
@@ -167,8 +173,16 @@ class WebBrowser:
         except TimeoutException:
             self.log.error("The element was not found after {0}".format(self.driver_timeout))
 
-    def find_element_by_xpath(self, xpath):
-        element = self.find_element((by.XPATH, xpath))
+    def find_element_by_class_name(self, class_name):
+        """Returns a selenium element class for the object found by class name. Wrapper for selenium method.
+        Calls a class method, which in turn, calls the Selenium base method, and handles errors, logging, etc.
+        """
+        element = self.find_element(by.CLASS_NAME, class_name)
+
+        return element
+
+    def find_element_by_css_selector(self, css_selector):
+        element = self.find_element(by.CSS_SELECTOR, css_selector)
 
         return element
 
@@ -197,6 +211,79 @@ class WebBrowser:
         element = self.find_element((by.TAG_NAME, tag_name))
 
         return element
+
+    def find_element_by_xpath(self, xpath):
+        element = self.find_element((by.XPATH, xpath))
+
+        return element
+
+    def find_elements(self, locator):
+        """Wrapper for finding an element using the wait technique.  This should help make the retrieval of the element
+            more compatible with AJAX style web design.  Using locator syntax to access locator[] and the By and Value
+            portions in logging an error.
+
+                    http://selenium-python.readthedocs.io/waits.html
+
+            TODO:
+                Create tests for the elements_ wrappers
+
+        """
+        try:
+            element = WebDriverWait(self.driver, self.driver_timeout).until(
+                ec.visibility_of_all_elements_located_located(locator))
+
+            return element
+        except TimeoutException:
+            msg = "A search by {0}, for element list with {0}={1}, timed out after {2} seconds" \
+                .format(locator[0], locator[1], self.driver_timeout)
+            self.log.error(msg)
+
+    def find_elements_by_class_name(self, class_name):
+        """Returns a list of elements matching the class name."""
+        element_list = self.find_elements((by.CLASS_NAME, class_name))
+
+        return element_list
+
+    def find_elements_by_css_selector(self, css_selector):
+        """Returns a list of elements matching the css selector."""
+        element_list = self.find_elements((by.CSS_SELECTOR, css_selector))
+
+        return element_list
+
+    def find_elements_by_name(self, html_tag_name):
+        """Returns a list of elements matching the html tag pattern name=value."""
+        element_list = self.find_elements((by.NAME, html_tag_name))
+
+        return element_list
+
+    def find_elements_by_link_text(self, html_a_tag_text):
+        """Returns a list of elements where the link, has text (seen by reader), with the exact text passed to 
+            method.
+        """
+        element_list = self.find_elements((by.LINK_TEXT, html_a_tag_text))
+
+        return element_list
+
+    def find_elements_by_partial_link_text(self, html_a_tag_text):
+        """Returns a list of elements where the link, has text (seen by reader), containing text passed to
+            method.
+        """
+        element_list = self.find_elements((by.PARTIAL_LINK_TEXT, html_a_tag_text))
+
+        return element_list
+
+    def find_elements_by_tag_name(self, tag_name):
+        """Returns a list of elements where the tag name matches the text passed to method.
+        """
+        element_list = self.find_elements((by.TAG_NAME, tag_name))
+
+        return element_list
+
+    def find_elements_by_xpath(self, xpath_search):
+        """Returns a list of elements matching the xpath search pattern."""
+        element_list = self.find_elements((by.XPATH, xpath_search))
+
+        return element_list
 
     def scroll_into_view(self, element):
         # Let's bring it into view
