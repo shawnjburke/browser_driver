@@ -9,7 +9,8 @@ between versions of the browser.
 ##############
 Install
 ##############
-Currently there is no installer for this package.
+Currently there is no installer for this package.  There is a setup.py file which can create the build.  If using
+PyCharm there is a run configuration in the .idea\runConfigurations directory.
 
 ##############
 Documentation
