@@ -1,6 +1,5 @@
 # Originally inspired from http://go.chriswarrick.com/entry_points
 
-
 from setuptools import setup, find_packages
 
 setup(author='Shawn J Burke',
