@@ -17,7 +17,7 @@ setup(author='Shawn J Burke',
         "Source Code": "https://github.com/shawnjburke/browser_driver/",
       },
       url="https://github.com/shawnjburke/browser_driver",
-      version='2019.4.8-2135',
+      version='2019.4.8.2135',
 
       # entry_points={
       #    'console_scripts': [ 'py_guide = py_guide.__main__:main' ]
