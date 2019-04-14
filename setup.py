@@ -17,8 +17,9 @@ setup(author='Shawn J Burke',
         "Documentation": "https://shawnjburke.github.io/browser_driver/",
         "Source Code": "https://github.com/shawnjburke/browser_driver/",
       },
+      test_suite="browser_driver.tests.browser_tests",
       url="https://github.com/shawnjburke/browser_driver",
-      version='2019.4.14',
+      version='2019.4.14.1248',
 
       # entry_points={
       #    'console_scripts': [ 'py_guide = py_guide.__main__:main' ]
