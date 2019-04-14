@@ -6,9 +6,10 @@ setup(author='Shawn J Burke',
       author_email='pypi.python@teamburke.com',
       description='Browser Driver is a Wrapper for Selenium Web Automation',
       keywords="selenium test testing automation browser",
+      license="MIT",
       # newline separates Description: header in PKG-INFO from readme content
       long_description='\n' + open('README.rst').read(),
-      name='sjb.browser_driver',
+      name='sjb.browser-driver',
       # packages=['browser_driver'],
       packages=find_packages("browser_driver"),
       project_urls={
@@ -17,7 +18,7 @@ setup(author='Shawn J Burke',
         "Source Code": "https://github.com/shawnjburke/browser_driver/",
       },
       url="https://github.com/shawnjburke/browser_driver",
-      version='2019.4.8.2135',
+      version='2019.4.14',
 
       # entry_points={
       #    'console_scripts': [ 'py_guide = py_guide.__main__:main' ]
