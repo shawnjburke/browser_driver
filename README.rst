@@ -9,8 +9,19 @@ between versions of the browser.
 ##############
 Install
 ##############
-Currently there is no installer for this package.  There is a setup.py file which can create the build.  If using
-PyCharm there is a run configuration in the .idea\\runConfigurations directory.
+
+.. code-block:: python
+
+    c:\browser_test> venv\scripts\pip -install sjb.browserdriver
+
+To upgrade an existing installation add the additional switch
+
+.. code-block:: python
+
+    c:\browser_test> venv\scripts\pip -install sjb.browserdriver --upgrade
+
+If you want to build the project, and are using PyCharm (and if not, why?), there is a run configuration
+in the .idea\\runConfigurations directory.
 
 ##############
 Documentation
@@ -27,9 +38,3 @@ to cause an issue.  For instance
 In addition to logging, wrapping also provides additional handling.  For instance when navigating to a new page we may
 want to check the new page is loaded, before returning from the method, to avoid subsequent code from operating on a
 stale page.
-
-..  seealso::
-
-    `ChromeDriver Methods`_
-
-..  _ChromeDriver Methods: https://seleniumhq.github.io/selenium/docs/api/dotnet/html/Methods_T_OpenQA_Selenium_Chrome_ChromeDriver.htm#mainBody
