@@ -340,6 +340,7 @@ class WebBrowser(object):
     def url(self, value):
         """Setting the URL will work as our navigate method in this class"""
         self._url = value
+        self.log.info("Navigating to {0}".format(value))
         self.driver.get(value)
 
     @property

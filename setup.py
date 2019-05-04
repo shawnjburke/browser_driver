@@ -50,5 +50,5 @@ setup(author='Shawn J Burke',
       },
       test_suite="browser_driver.tests.browser_tests",
       url="https://github.com/shawnjburke/browser_driver",
-      version='2019.4.28.1835',
+      version='2019.4.29',
       )
