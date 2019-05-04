@@ -1,8 +1,14 @@
+# PEP8: Group imports
+# 1) Standard library imports.
 import logging
 import logging.handlers
-import unittest2
 import os
 import sys
+import time
+# 2) Related third party imports.
+import unittest2
+from selenium.webdriver.common.by import By
+# 3) Local application/library specific imports.
 from browser_driver import browser
 
 
@@ -43,10 +49,8 @@ class BrowserDriverTests(unittest2.TestCase):
         # stdout_log.setLevel(logging.DEBUG)
 
         file_log_path = cls.log_directory(True)
-        file_log = logging.handlers.TimedRotatingFileHandler(filename="{0}\{1}.log".
-                                                                      format(file_log_path,
-                                                                             cls.__getattribute__(cls, "__name__")),
-                                                                      when="D", interval=1, backupCount=30)
+        file_name = "{0}\{1}.log".format(file_log_path, cls.__getattribute__(cls, "__name__"))
+        file_log = logging.handlers.TimedRotatingFileHandler(filename=file_name, when="D", interval=1, backupCount=30)
         file_log.setFormatter(logging.Formatter(fmt="%(asctime)s | %(levelname)s\t| %(message)s"))
         file_log.setLevel(logging.DEBUG)
 
@@ -86,6 +90,19 @@ class BrowserDriverTests(unittest2.TestCase):
         self.browser = browser.WebBrowser("FireFOX")
         self.assertIsNotNone(self.browser)
         self.assertEqual(self.browser.name.lower(), "firefox")
+
+    def test_click_element(self):
+        """This test ensures that the mouse clicks on a given element"""
+        # url = "file://{0}/test_click.html".format(os.getcwd()).replace('\\', '/')
+        url = "https://www.google.com/"
+        self.browser.url = url
+        self.assertEqual(self.browser.url, url)
+        self.browser.send_keys_by_name('q', 'great quotes of history')
+        xpath = r'//*[@id="tsf"]/div[2]/div/div[3]/center/input[1]'
+        self.browser.click_element_by_xpath(xpath)
+        element = self.browser.find_element_by_id("resultStats")
+        self.assertIsNotNone(element, "Did not find results statistics element on page.")
+        self.log.info("Search button clicked, and results returned as expected.")
 
     # @unittest2.skip("test definition in progress")
     def test_click_to_new_page(self):
