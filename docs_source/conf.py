@@ -15,19 +15,24 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+from backports import configparser2
+from datetime import datetime
+import pkg_resources
 
 # -- Project information -----------------------------------------------------
-
 project = 'Browser Driver'
-copyright = '2018, Shawn J Burke'
+now = datetime.now()
+copyright = '{0}, Shawn J Burke'.format(str(now.year))
 author = 'Shawn J Burke'
-
+ini_file = configparser2.ConfigParser()
+ini_file_name = "../browser_driver.ini"
+ini_file.read(ini_file_name)
 # The short X.Y version
-version = ''
+version = ini_file["browser_driver"]["version"]
+# For our purposes, version = release
 # The full version, including alpha/beta/rc tags
-release = '2018.06.18'
-
+# release = '2018.06.18'
+release = version
 
 # -- General configuration ---------------------------------------------------
 
