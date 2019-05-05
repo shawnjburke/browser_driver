@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome! Docs 4 Browser Driver &mdash; Browser Driver 2018.06.18 documentation</title>
+  <title>Welcome! Docs 4 Browser Driver &mdash; Browser Driver 2019.5.5 documentation</title>
   
 
   
@@ -55,6 +55,10 @@
 
           
             
+            
+              <div class="version">
+                2019.5.5
+              </div>
             
           
 
@@ -205,6 +209,8 @@ in the .idea\runConfigurations directory.</p>
 <span class="n">web</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">WebBrowser</span><span class="p">(</span><span class="n">logger</span><span class="o">=</span><span class="n">log</span><span class="p">)</span>
 <span class="n">web</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.google.com&quot;</span>
 <span class="n">web</span><span class="o">.</span><span class="n">send_keys_by_name</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;pypi browserdriver&#39;</span><span class="p">)</span>
+<span class="n">xpath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;//*[@id=&quot;tsf&quot;]/div[2]/div/div[3]/center/input[1]&#39;</span>
+<span class="n">web</span><span class="o">.</span><span class="n">click_element_by_xpath</span><span class="p">(</span><span class="n">xpath</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -252,7 +258,7 @@ stale page.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Shawn J Burke.
+        &copy; Copyright 2019, Shawn J Burke.
 
     </p>
   </div>
@@ -274,7 +280,7 @@ stale page.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2018.06.18',
+            VERSION:'2019.5.5',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

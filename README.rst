@@ -59,8 +59,6 @@ The Hello World
     web.send_keys_by_name('q', 'pypi browserdriver')
     xpath = r'//*[@id="tsf"]/div[2]/div/div[3]/center/input[1]'
     web.click_element_by_xpath(xpath)
-    element = web.find_element_by_id("resultStats")
-    web.assertIsNotNone(element, "Did not find results statistics element on page.")
 
 ##############
 Documentation

@@ -4,10 +4,8 @@ import logging
 import logging.handlers
 import os
 import sys
-import time
 # 2) Related third party imports.
 import unittest2
-from selenium.webdriver.common.by import By
 # 3) Local application/library specific imports.
 from browser_driver import browser
 
