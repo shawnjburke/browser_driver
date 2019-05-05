@@ -10,7 +10,7 @@ from contextlib import contextmanager
 from selenium import webdriver
 from selenium.webdriver.common.by import By as by
 from selenium.webdriver.support.ui import WebDriverWait, Select
-from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support import expected_conditions as expect
 from selenium.common.exceptions import TimeoutException
 
 
@@ -125,6 +125,34 @@ class WebBrowser(object):
             if self.scroll_into_view(element):
                 element.click()
 
+    def click_element_by_name(self, name):
+        return self.click_element(by.NAME, name)
+
+    def click_element_by_xpath(self, xpath):
+        return self.click_element(by.XPATH, xpath)
+
+    def click_element_by_id(self, identifier):
+        return self.click_element(by.ID, identifier)
+
+    def click_element(self, locate_by, locator):
+        """This method will wait for an element to become present, and
+        for the element to become clickable before trying to click. Useful
+        in situations where an element may be loaded in with AJAX, or has
+        an animation"""
+        try:
+            we = WebDriverWait(self.driver, self.driver_timeout).until(
+                expect.presence_of_element_located((locate_by, locator))
+            )
+            if we:
+                we = WebDriverWait(self.driver, self.driver_timeout).until(
+                    expect.element_to_be_clickable((locate_by, locator))
+                )
+                we.click()
+                return True
+        except TimeoutException:
+            error_msg_template_str = "Timeout Exceeded: Couldn't find an element with locator {0}"
+            self.log.error(error_msg_template_str.format(locator))
+
     @contextmanager
     def click_to_new_page(self, element):
         """This is a wrapper for clicking an HTML hyperlink.  This method is specific to clicking a non-javascript link
@@ -136,7 +164,7 @@ class WebBrowser(object):
         element.click()
         page_leaving = self.find_element_by_tag_name("html")
         yield
-        WebDriverWait(self, self.driver_timeout).until(ec.staleness_of(page_leaving))
+        WebDriverWait(self, self.driver_timeout).until(expect.staleness_of(page_leaving))
 
     def click_to_new_page_by_id(self, html_id):
         """This method finds an element by id, clicks it, and waits for the new page to load before returning."""
@@ -155,7 +183,7 @@ class WebBrowser(object):
         """
         try:
             element = WebDriverWait(self.driver, self.driver_timeout).until(
-                ec.visibility_of_element_located(locator))
+                expect.visibility_of_element_located(locator))
 
             return element
         except TimeoutException:
@@ -167,7 +195,7 @@ class WebBrowser(object):
         """Wrapper for finding if an element is clickable using the wait technique."""
         try:
             element = WebDriverWait(self.driver, self.driver_timeout).until(
-                ec.element_to_be_clickable(locator))
+                expect.element_to_be_clickable(locator))
 
             return element
         except TimeoutException:
@@ -230,7 +258,7 @@ class WebBrowser(object):
         """
         try:
             element = WebDriverWait(self.driver, self.driver_timeout).until(
-                ec.visibility_of_all_elements_located_located(locator))
+                expect.visibility_of_all_elements_located_located(locator))
 
             return element
         except TimeoutException:
@@ -340,6 +368,7 @@ class WebBrowser(object):
     def url(self, value):
         """Setting the URL will work as our navigate method in this class"""
         self._url = value
+        self.log.info("Navigating to {0}".format(value))
         self.driver.get(value)
 
     @property

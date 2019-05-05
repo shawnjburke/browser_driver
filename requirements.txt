@@ -1,4 +1,6 @@
-pip==10.0.1
+configparser2==4.0.0
+packaging==19.0
+pip>=10.0.1
 setuptools==39.2.0
 selenium==3.12.0
 Sphinx==1.7.4
