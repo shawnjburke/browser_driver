@@ -11,7 +11,7 @@ rem For readability, we'll build up the command using a series of variables.
 
 rem While examples show uploading the dist\* directory, I prefer a specific filename to upload
 rem Distribute the latest file, sorted on name,to pypi
-for /f %%i in ('dir dist /b /ON') do set dist_file="dist\%%i"
+for /f %%i in ('dir dist /b /O:D') do set dist_file="dist\%%i"
 rem @echo %dist_file%
 
 rem If no parameter upload to test.pypi.org

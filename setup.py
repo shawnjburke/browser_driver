@@ -58,6 +58,7 @@ setup(author='Shawn J Burke',
               'Topic :: Software Development :: Quality Assurance',
               'Topic :: Software Development :: Testing'
             ],
+      # data_files=[('', ['./browser_driver.ini'])],
       description='Browser Driver is a Wrapper for Selenium Web Automation',
       # entry_points={
       #    'console_scripts': [ 'py_guide = py_guide.__main__:main' ]
