@@ -10,7 +10,9 @@ call dist_pypi_config.bat
 rem For readability, we'll build up the command using a series of variables.
 
 rem While examples show uploading the dist\* directory, I prefer a specific filename to upload
-set "dist_file=dist/sjb.browserdriver-2019.4.28.1835-py2-none-any.whl"
+rem Distribute the latest file, sorted on name,to pypi
+for /f %%i in ('dir dist /b /ON') do set dist_file="dist\%%i"
+rem @echo %dist_file%
 
 rem If no parameter upload to test.pypi.org
 if "%~1"=="pypi" (
@@ -26,8 +28,8 @@ set cmd=venv_27\scripts\python.exe -m twine upload --verbose^
  --username "%user_name%"^
  --password "%password%"
 
-rem call venv_27\scripts\python.exe -m twine upload --verbose --repository-url %env% "%dist_file%" --username "%user_name%" --password "%password%"
-@echo %cmd%
-@echo:
+rem @echo %cmd%
+rem @echo:
 @echo Beginning submission to %env%  ...
+@echo File to upload: %dist_file%
 call %cmd%
