@@ -21,7 +21,7 @@ Installation
 
 .. code-block:: python
 
-    c:\browser_test> venv\scripts\pip -install sjb.browserdriver
+    c:\\browser_test> venv\scripts\pip -install sjb.browserdriver
 
 To upgrade an existing installation add the additional switch
 
