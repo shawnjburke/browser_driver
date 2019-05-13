@@ -36,6 +36,6 @@ This project is documented using Sphinx and reStructuredText, using a theme prov
 
 Documentation can be found in several locations
 
-* docs\ as html
-* docs_source\ as reStructuredText source
+* docs\\ as html
+* docs_source\\ as reStructuredText source
 * https://shawnjburke.github.io/browser_driver/
