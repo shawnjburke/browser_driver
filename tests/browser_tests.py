@@ -61,13 +61,16 @@ class BrowserDriverTests(unittest2.TestCase):
         cls.log.debug("Logger {0} obtained for usage by {1} \n".format(cls.log.name, cls.__name__))
 
     def tearDown(self):
-        """A set of actions to be used by all unittest2.TestCase.tearDown() methods.
+        """A set of actions to be used by all unittest2.TestCase.tearDown() methods.  This will
+        enable functionality such as leaving the browser open if the test failed (and we are running
+        with the browser visible).  This is a clean-up method to standardize across all tests.
+
             Args:
                 test_case is an instance of unittest2.TestCase
 
             Example:
                 class myTests(unitests2.TestCase):
-                    tearDown(self):
+                    def tearDown(self):
                         helper_selenium_functions.py.tear_down(self)
         """
         if self._outcome.errors[1][1] is None:

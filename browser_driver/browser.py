@@ -253,7 +253,7 @@ class WebBrowser(object):
                     http://selenium-python.readthedocs.io/waits.html
 
             TODO:
-                Create tests for the elements_ wrappers
+                Create tests for the elements wrappers
 
         """
         try:

@@ -1,8 +1,3 @@
-.. Browser Driver documentation master file, created by
-   sphinx-quickstart on Mon Jun 18 23:02:27 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 ==========================================
 Welcome! Docs 4 Browser Driver
 ==========================================
@@ -11,7 +6,10 @@ Welcome! Docs 4 Browser Driver
    :maxdepth: 2
    :caption: Contents:
 
-.. include:: ../README.rst
+   about
+   installation
+   change_log
+   Source Code Docs <code/modules>
 
 
 ###################

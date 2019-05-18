@@ -25,7 +25,7 @@ now = datetime.now()
 copyright = '{0}, Shawn J Burke'.format(str(now.year))
 author = 'Shawn J Burke'
 ini_file = configparser2.ConfigParser()
-ini_file_name = "../browser_driver.ini"
+ini_file_name = "../browser_driver.cfg"
 ini_file.read(ini_file_name)
 # The short X.Y version
 version = ini_file["browser_driver"]["version"]

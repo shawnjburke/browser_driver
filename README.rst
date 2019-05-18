@@ -1,14 +1,23 @@
 ==============================================
 browser_driver
 ==============================================
-This project contains a wrapper for selenium.  The wrapper deals with things such as
-scrolling an item into view before clicking it.  In general, the wrapper helps
-deal with changes in browsers for many reasons, including changes
-between versions of the browser.
+This project contains a wrapper for selenium, a framework to automate a browser,
+and often used in testing.   This wrapper provides
 
-##############
-Install
-##############
+    1. Logging, because good software has good logging
+
+    2. Browser Upgrade Protection; because as they race to out-do each other, the
+       browser behaves differently with some updates
+
+    3. Selenium behavior supplementation; for instance, with an update, Chrome required
+       an element to be scrolled into view or an error occurred.  Having a central wrapper
+       allows for making that sort of update in one location
+
+    4. Screenshots, because if you want to run lights-out (not visible), you'll need a
+       screenshot of what went wrong to fix it.
+
+Installation
+=============
 
 .. code-block:: python
 
@@ -20,58 +29,29 @@ To upgrade an existing installation add the additional switch
 
     c:\browser_test> venv\scripts\pip -install sjb.browserdriver --upgrade
 
-If you want to build the project, and are using PyCharm (and if not, why?), there is a run configuration
-in the .idea\\runConfigurations directory.
+Recent Changes
+==============
 
-################
-The Hello World
-################
+The full change log can be found at [TODO: update with link]
 
-.. code-block:: python
+v0.1.3 - Bug fix where the setup process would update the cfg file key = value where the bat file was
+updating as key=value.
 
-    import logging
-    import logging.handlers
-    import os
+v0.1.2 - Bug fix in dist_pypi.bat+browser_driver.cfg
 
-    from browser_driver import browser
+v0.1.1 - Updated setup.py adding find_and_list_packages() method.  Updated the dist_pypi.bat script in a number of ways.
+Including updating the date we uploaded to a pypi environment in the project cfg file.
 
-    # Get the top level application logger
-    log = logging.getLogger(__name__)
-    file_path = r"{0}".format(os.getcwd())
-    file_name = "{0}\\browser_driver.log".format(file_path)
-    file_log = logging.handlers.TimedRotatingFileHandler(filename=file_name,
-                                                         when="D", interval=1, backupCount=30)
-    file_log = logging.FileHandler(filename="{0}\\browser_driver.log".format(file_path))
-    file_log.setFormatter(logging.Formatter(fmt="%(asctime)s | %(levelname)s | %(message)s"))
-    file_log.setLevel(logging.DEBUG)
+v0.1.0 - First development release to test.pypi.org with Semantic Version number scheme.
 
-    # Using logging to populate standard output with info level log entries
-    stdout_log = logging.StreamHandler(sys.stdout)
-    stdout_log.setFormatter(logging.Formatter(fmt=""))
-    stdout_log.setLevel(logging.INFO)
 
-    log.addHandler(stdout_log)
-    log.addHandler(file_log)
-    log.setLevel(logging.DEBUG)
-
-    web = browser.WebBrowser(logger=log)
-    web.url = "https://www.google.com"
-    web.send_keys_by_name('q', 'pypi browserdriver')
-    xpath = r'//*[@id="tsf"]/div[2]/div/div[3]/center/input[1]'
-    web.click_element_by_xpath(xpath)
-
-##############
 Documentation
-##############
-https://shawnjburke.github.io/browser_driver/
+==============
 
-This class wraps functionality provided by the Selenium peeps.  Created this class to do things like provide logging,
-and handle quirks in browser behavior.  For instance it's not uncommon for a browser+browser-driver+python combination
-to cause an issue.  For instance
+This project is documented using Sphinx and reStructuredText, using a theme provided by Read the Docs.
 
-    * elements need to be scrolled into view to be seen
-    * Firefox (a browser) requires changing how the object is invoked
+Documentation can be found in several locations
 
-In addition to logging, wrapping also provides additional handling.  For instance when navigating to a new page we may
-want to check the new page is loaded, before returning from the method, to avoid subsequent code from operating on a
-stale page.
+* docs\\ as html
+* docs_source\\ as reStructuredText source
+* https://shawnjburke.github.io/browser_driver/
