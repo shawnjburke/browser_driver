@@ -26,6 +26,7 @@ wheels/
 MANIFEST
 dist_pypi_config.bat
 test.bat
+test_time.bat
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
