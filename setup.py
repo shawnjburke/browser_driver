@@ -7,6 +7,17 @@ from packaging import version
 from setuptools import setup, find_packages
 
 
+def find_and_list_packages():
+    """This wrapper adds the display of packages found by setuptools.find_packages() during the build process.  This
+    is useful when troubleshooting issues, such as when creating package_data entries for setup.py
+    """
+    packages = find_packages()
+
+    print("Packages found during build:\r\n\t{0}".format(packages))
+
+    return packages
+
+
 def version_builder(write_new_version=True):
     """This method determines the next version number.  The assumption is the version numbering scheme is relying on
     a timestamp based version, in contrast to Major.Minor.Revision type of structure.  THAT IS A NON-STANDARD SCHEME."""
@@ -16,7 +27,7 @@ def version_builder(write_new_version=True):
     ini_file = configparser2.ConfigParser()
     ini_file.read(ini_file_name)
 
-    # read the Semantic Version
+    # read the Semantic Version.  To update it, go changein the file
     semantic_version = ini_file["browser_driver"]["version"]
     # Build an ISO timestamp of when the build was done
     military_time = int(str(now.hour) + "{:02d}".format(now.minute))
@@ -26,7 +37,7 @@ def version_builder(write_new_version=True):
 
     # Update the some version information in the cfg file
     if write_new_version:
-        # Set the value in memory in the object
+        # Timestamp and build number will increment each time, independent of version updating
         ini_file["browser_driver"]["version_build_number"] = str(build_number)
         ini_file["browser_driver"]["version_timestamp"] = version_timestamp
 
@@ -78,7 +89,7 @@ if __name__ == "__main__":
           long_description_content_type='text/x-rst',
           name='sjb.browserdriver',
           # packages=['browser_driver'],
-          packages=find_packages(),
+          packages=find_and_list_packages(),
           project_urls={
             "Bug Tracker": "https://github.com/shawnjburke/browser_driver/issues/",
             "Documentation": "https://shawnjburke.github.io/browser_driver/",

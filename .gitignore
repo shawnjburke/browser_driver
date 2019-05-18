@@ -25,7 +25,7 @@ wheels/
 *.egg
 MANIFEST
 dist_pypi_config.bat
-
+test.bat
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
