@@ -9,6 +9,7 @@ set "para1=%~1"
 rem don't pass %~1 directly as it's context changes between function scopes
 call :argparse para1
 if "%para1%"=="1" (
+    rem we showed the help file, drop out of the script
     EXIT /B /0
 )
 
@@ -104,10 +105,13 @@ if "%HH:~0,1%"=="0" (
 )
 rem Which variable to update?  Upload to pypi.org or test.pypi.org?
 if "%env%"=="https://pypi.org/legacy/" (
-    call jrepl "^publish_pypi=.*" "publish_test_pypi=%YYYY%.%M0%.%D0%.%H0%.%Min%" /f browser_driver.cfg /o -
+    call jrepl "^publish_pypi=.*" "publish_pypi=%YYYY%.%M0%.%D0%.%HH%%Min%" /f browser_driver.cfg /o -
+    echo Published to %env%. Updated configuration file publish_pypi=%YYYY%.%M0%.%D0%.%HH%%Min%
 ) else (
-    call jrepl "^publish_test_pypi=.*" "publish_test_pypi=%YYYY%.%M0%.%D0%.%H0%.%Min%" /f browser_driver.cfg /o -
+    call jrepl "^publish_test_pypi=.*" "publish_test_pypi=%YYYY%.%M0%.%D0%.%HH%%Min%" /f browser_driver.cfg /o -
+    echo Published to %env%. Updated configuration file publish_test_pypi=%YYYY%.%M0%.%D0%.%HH%%Min%
 )
+
 
 
 
