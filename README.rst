@@ -29,6 +29,19 @@ To upgrade an existing installation add the additional switch
 
     c:\browser_test> venv\scripts\pip -install sjb.browserdriver --upgrade
 
+Recent Changes
+==============
+
+The full change log can be found at [TODO: update with link]
+
+v0.1.2 - Bug fix in dist_pypi.bat+browser_driver.cfg
+
+v0.1.1 - Updated setup.py adding find_and_list_packages() method.  Updated the dist_pypi.bat script in a number of ways.
+Including updating the date we uploaded to a pypi environment in the project cfg file.
+
+v0.1.0 - First development release to test.pypi.org with Semantic Version number scheme.
+
+
 Documentation
 ==============
 
