@@ -34,6 +34,9 @@ Recent Changes
 
 The full change log can be found at [TODO: update with link]
 
+v0.1.3 - Bug fix where the setup process would update the cfg file key = value where the bat file was
+updating as key=value.
+
 v0.1.2 - Bug fix in dist_pypi.bat+browser_driver.cfg
 
 v0.1.1 - Updated setup.py adding find_and_list_packages() method.  Updated the dist_pypi.bat script in a number of ways.
