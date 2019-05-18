@@ -8,6 +8,7 @@ Welcome! Docs 4 Browser Driver
 
    about
    installation
+   change_log
    Source Code Docs <code/modules>
 
 
