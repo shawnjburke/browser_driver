@@ -1,0 +1,120 @@
+2019-04-07 17:15:50,118 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:15:50,121 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:15:58,463 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:16:04,395 | INFO	| test_browser_Firefox() completed successfully and no errors were observed.
+2019-04-07 17:16:27,752 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:16:27,753 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:16:31,859 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:16:42,288 | ERROR	| A search by id, for element with id=license, timed out after 10 seconds
+2019-04-07 17:16:42,293 | INFO	| file:///Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_html.html
+2019-04-07 17:16:42,293 | INFO	| test_click_to_new_page() completed successfully and no errors were observed.
+2019-04-07 17:16:49,947 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:16:49,947 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:16:52,128 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:16:52,887 | INFO	| test_navigate() completed successfully and no errors were observed.
+2019-04-07 17:17:00,059 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:17:00,061 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:17:05,295 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:17:05,782 | INFO	| test_find_element_by_link_text() completed successfully and no errors were observed.
+2019-04-07 17:17:10,937 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:17:10,937 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:17:16,154 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:17:16,631 | INFO	| test_find_element_by_partial_link_text() completed successfully and no errors were observed.
+2019-04-07 17:17:22,006 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:17:22,007 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:17:27,219 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:17:28,246 | INFO	| test_find_element_by_xpath() completed successfully and no errors were observed.
+2019-04-07 17:18:38,319 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:18:38,321 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:18:40,424 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:18:41,240 | INFO	| test_find_element_by_id() completed successfully and no errors were observed.
+2019-04-07 17:18:53,529 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:18:53,529 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:18:58,855 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:19:00,071 | INFO	| test_checkboxes() completed successfully and no errors were observed.
+2019-04-07 17:19:07,884 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:19:07,884 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:19:13,104 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:19:13,874 | INFO	| test_click_not_in_view() completed successfully and no errors were observed.
+2019-04-07 17:19:20,326 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:19:20,328 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:19:22,674 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:19:23,153 | INFO	| test_send_keys() completed successfully and no errors were observed.
+2019-04-07 17:19:33,505 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:19:33,506 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:19:38,724 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:19:44,744 | INFO	| test_browser_Firefox() completed successfully and no errors were observed.
+2019-04-07 17:19:45,434 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:19:50,680 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:19:51,627 | INFO	| test_checkboxes() completed successfully and no errors were observed.
+2019-04-07 17:19:52,333 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:19:54,766 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:19:55,015 | INFO	| test_click_not_in_view() completed successfully and no errors were observed.
+2019-04-07 17:19:57,130 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:19:59,258 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:20:09,658 | ERROR	| A search by id, for element with id=license, timed out after 10 seconds
+2019-04-07 17:20:09,666 | INFO	| file:///Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_html.html
+2019-04-07 17:20:09,667 | INFO	| test_click_to_new_page() completed successfully and no errors were observed.
+2019-04-07 17:20:11,787 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:20:17,043 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:20:18,101 | INFO	| test_find_element_by_id() completed successfully and no errors were observed.
+2019-04-07 17:20:18,777 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:20:24,602 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:20:25,439 | INFO	| test_find_element_by_link_text() completed successfully and no errors were observed.
+2019-04-07 17:20:26,128 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:20:31,339 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:20:31,794 | INFO	| test_find_element_by_partial_link_text() completed successfully and no errors were observed.
+2019-04-07 17:20:32,441 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:20:37,651 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:20:38,855 | INFO	| test_find_element_by_xpath() completed successfully and no errors were observed.
+2019-04-07 17:20:39,549 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:20:41,596 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:20:42,292 | INFO	| test_navigate() completed successfully and no errors were observed.
+2019-04-07 17:20:44,383 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:20:46,988 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:20:47,449 | INFO	| test_send_keys() completed successfully and no errors were observed.
+2019-04-07 17:21:24,930 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-04-07 17:21:24,931 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:21:30,270 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:21:36,392 | INFO	| test_browser_Firefox() completed successfully and no errors were observed.
+2019-04-07 17:21:37,065 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:21:42,274 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:21:43,585 | INFO	| test_checkboxes() completed successfully and no errors were observed.
+2019-04-07 17:21:44,250 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:21:49,475 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:21:50,167 | INFO	| test_click_not_in_view() completed successfully and no errors were observed.
+2019-04-07 17:21:50,824 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:21:53,254 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:22:03,776 | ERROR	| A search by id, for element with id=license, timed out after 10 seconds
+2019-04-07 17:22:03,781 | INFO	| file:///Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_html.html
+2019-04-07 17:22:03,781 | INFO	| test_click_to_new_page() completed successfully and no errors were observed.
+2019-04-07 17:22:06,857 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:22:12,087 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:22:13,048 | INFO	| test_find_element_by_id() completed successfully and no errors were observed.
+2019-04-07 17:22:13,732 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:22:18,935 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:22:19,351 | INFO	| test_find_element_by_link_text() completed successfully and no errors were observed.
+2019-04-07 17:22:20,008 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:22:22,288 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:22:22,433 | INFO	| test_find_element_by_partial_link_text() completed successfully and no errors were observed.
+2019-04-07 17:22:24,546 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:22:29,762 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:22:30,714 | INFO	| test_find_element_by_xpath() completed successfully and no errors were observed.
+2019-04-07 17:22:31,380 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:22:36,709 | DEBUG	| Created instance of FireFox browser for testing.
+2019-04-07 17:22:37,748 | INFO	| test_navigate() completed successfully and no errors were observed.
+2019-04-07 17:22:38,543 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-04-07 17:22:41,407 | DEBUG	| Created instance of Chrome browser for testing.
+2019-04-07 17:22:41,839 | INFO	| test_send_keys() completed successfully and no errors were observed.

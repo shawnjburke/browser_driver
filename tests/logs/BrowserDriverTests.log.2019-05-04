@@ -1,0 +1,111 @@
+2019-05-04 13:13:16,261 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 13:13:16,264 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:13:21,058 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 13:13:31,724 | INFO	| test_browser_Firefox() completed successfully and no errors were observed.
+2019-05-04 13:13:33,214 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:13:39,335 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 13:13:39,336 | INFO	| Navigating to https://mdn.mozillademos.org/en-US/docs/Web/HTML/Element/input/checkbox$samples/Value?revision=1389331
+2019-05-04 13:13:40,508 | INFO	| test_checkboxes() completed successfully and no errors were observed.
+2019-05-04 13:13:42,033 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:13:44,885 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 13:13:44,885 | INFO	| Navigating to file://Z:\Users\sburke\Dropbox\dev\browser_driver\features\v1\browser_driver\tests/test_html.html
+2019-05-04 13:13:45,127 | INFO	| test_click_not_in_view() completed successfully and no errors were observed.
+2019-05-04 13:13:47,217 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:13:49,446 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 13:13:49,446 | INFO	| Navigating to file://Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_html.html
+2019-05-04 13:13:59,864 | ERROR	| A search by id, for element with id=license, timed out after 10 seconds
+2019-05-04 13:13:59,872 | INFO	| file:///Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_html.html
+2019-05-04 13:13:59,873 | INFO	| test_click_to_new_page() completed successfully and no errors were observed.
+2019-05-04 13:14:03,007 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:14:09,299 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 13:14:09,299 | INFO	| Navigating to https://www.google.com/
+2019-05-04 13:14:10,246 | INFO	| test_find_element_by_id() completed successfully and no errors were observed.
+2019-05-04 13:14:10,942 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:14:16,756 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 13:14:16,756 | INFO	| Navigating to file://Z:\Users\sburke\Dropbox\dev\browser_driver\features\v1\browser_driver\tests/test_html.html
+2019-05-04 13:14:17,598 | INFO	| test_find_element_by_link_text() completed successfully and no errors were observed.
+2019-05-04 13:14:18,256 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:14:24,074 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 13:14:24,074 | INFO	| Navigating to file://Z:\Users\sburke\Dropbox\dev\browser_driver\features\v1\browser_driver\tests/test_html.html
+2019-05-04 13:14:24,914 | INFO	| test_find_element_by_partial_link_text() completed successfully and no errors were observed.
+2019-05-04 13:14:25,570 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:14:27,843 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 13:14:27,843 | INFO	| Navigating to https://www.google.com/
+2019-05-04 13:14:28,768 | INFO	| test_find_element_by_xpath() completed successfully and no errors were observed.
+2019-05-04 13:14:30,860 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:14:36,675 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 13:14:36,675 | INFO	| Navigating to https://www.google.com/
+2019-05-04 13:14:37,573 | INFO	| test_navigate() completed successfully and no errors were observed.
+2019-05-04 13:14:38,261 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:14:41,650 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 13:14:41,650 | INFO	| Navigating to file://Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_html.html
+2019-05-04 13:14:42,103 | INFO	| test_send_keys() completed successfully and no errors were observed.
+2019-05-04 13:47:46,760 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 13:47:46,762 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 13:47:49,733 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 13:47:49,733 | INFO	| Navigating to file://Z:/Users/sburke/Dropbox/dev/browser_driver/features/v1/browser_driver/tests/test_click.html
+2019-05-04 13:47:50,983 | WARNING	| WARNING: Errors observed in execution of test_click_element().
+2019-05-04 13:47:50,984 | WARNING	| Did not call driver.quit() leaving chrome browser open for debugging.
+2019-05-04 14:00:47,145 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 14:00:47,148 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 14:00:54,204 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 14:00:54,204 | INFO	| Navigating to https://wwww.google.com
+2019-05-04 14:00:54,506 | WARNING	| WARNING: Errors observed in execution of test_click_element().
+2019-05-04 14:00:54,507 | WARNING	| Did not call driver.quit() leaving firefox browser open for debugging.
+2019-05-04 14:01:56,051 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 14:01:56,051 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 14:01:58,523 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 14:01:58,525 | INFO	| Navigating to https://www.google.com
+2019-05-04 14:01:59,290 | WARNING	| WARNING: Errors observed in execution of test_click_element().
+2019-05-04 14:01:59,290 | WARNING	| Did not call driver.quit() leaving chrome browser open for debugging.
+2019-05-04 14:03:27,244 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 14:03:27,246 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 14:03:29,306 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 14:03:29,308 | INFO	| Navigating to https://www.google.com/
+2019-05-04 14:03:40,549 | ERROR	| A search by name, for element with name=btnK, timed out after 10 seconds
+2019-05-04 14:03:40,549 | WARNING	| WARNING: Errors observed in execution of test_click_element().
+2019-05-04 14:03:40,549 | WARNING	| Did not call driver.quit() leaving chrome browser open for debugging.
+2019-05-04 14:12:04,696 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 14:12:04,697 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 14:12:07,075 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 14:12:07,075 | INFO	| Navigating to https://www.google.com/
+2019-05-04 14:12:08,128 | WARNING	| WARNING: Errors observed in execution of test_click_element().
+2019-05-04 14:12:08,128 | WARNING	| Did not call driver.quit() leaving chrome browser open for debugging.
+2019-05-04 15:07:01,542 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 15:07:01,542 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 15:07:03,872 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 15:07:03,872 | INFO	| Navigating to https://www.google.com/
+2019-05-04 15:07:15,401 | ERROR	| Timeout Exceeded: Couldn't find an element with locator btnK
+2019-05-04 15:07:15,401 | INFO	| test_click_element() completed successfully and no errors were observed.
+2019-05-04 15:14:48,667 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 15:14:48,667 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 15:14:54,575 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 15:14:54,575 | INFO	| Navigating to https://www.google.com/
+2019-05-04 15:14:56,910 | INFO	| test_click_element() completed successfully and no errors were observed.
+2019-05-04 15:23:14,385 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 15:23:14,387 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 15:23:20,743 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 15:23:20,743 | INFO	| Navigating to https://www.google.com/
+2019-05-04 15:23:23,203 | INFO	| test_click_element() completed successfully and no errors were observed.
+2019-05-04 15:31:27,578 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 15:31:27,579 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 15:31:33,413 | DEBUG	| Created instance of FireFox browser for testing.
+2019-05-04 15:31:33,413 | INFO	| Navigating to https://www.google.com/
+2019-05-04 15:31:35,933 | INFO	| test_click_element() completed successfully and no errors were observed.
+2019-05-04 15:33:21,364 | DEBUG	| Logger browser_tests obtained for usage by BrowserDriverTests 
+
+2019-05-04 15:33:21,365 | DEBUG	| Logger browser_tests.browser_driver.browser obtained for usage by browser_driver.browser
+2019-05-04 15:33:24,036 | DEBUG	| Created instance of Chrome browser for testing.
+2019-05-04 15:33:24,036 | INFO	| Navigating to https://www.google.com/
+2019-05-04 15:33:26,727 | INFO	| Search button clicked, and results returned as expected.
+2019-05-04 15:33:26,729 | INFO	| test_click_element() completed successfully and no errors were observed.
