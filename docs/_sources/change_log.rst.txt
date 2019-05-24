@@ -3,6 +3,12 @@ Release History for browser_driver
 ==============================================
 
 
+v0.1.3
+########
+
+Bug fix where the setup process would update the cfg file key = value where the bat file was
+updating as key=value.  Set bat file to key = value logic.
+
 v0.1.2
 ########
 
