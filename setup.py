@@ -18,14 +18,10 @@ def find_and_list_packages():
     return packages
 
 
-def version_builder(write_new_version=True):
+def version_builder(write_new_version=True, ini_file=None):
     """This method determines the next version number.  The assumption is the version numbering scheme is relying on
     a timestamp based version, in contrast to Major.Minor.Revision type of structure.  THAT IS A NON-STANDARD SCHEME."""
-    ini_file_name = "browser_driver.cfg"
     now = datetime.now()
-
-    ini_file = configparser2.ConfigParser()
-    ini_file.read(ini_file_name)
 
     # read the Semantic Version.  To update it, go changein the file
     semantic_version = ini_file["distribution"]["version"]
@@ -49,7 +45,11 @@ def version_builder(write_new_version=True):
 
 
 if __name__ == "__main__":
-    setup(author='Shawn J Burke',
+    ini_file_name = "browser_driver.cfg"
+    ini_file = configparser2.ConfigParser()
+    ini_file.read(ini_file_name)
+
+    setup(author=ini_file["project"]["author"],
           author_email='pypi.python@teamburke.com',
           classifiers=[
                   # Trove classifiers
@@ -97,5 +97,5 @@ if __name__ == "__main__":
           },
           test_suite="browser_driver.tests.browser_tests",
           url="https://github.com/shawnjburke/browser_driver",
-          version=version_builder(write_new_version=True),
+          version=version_builder(write_new_version=True, ini_file=ini_file),
           )
