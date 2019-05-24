@@ -28,7 +28,7 @@ ini_file = configparser2.ConfigParser()
 ini_file_name = "../browser_driver.cfg"
 ini_file.read(ini_file_name)
 # The short X.Y version
-version = ini_file["browser_driver"]["version"]
+version = ini_file["distribution"]["version"]
 # For our purposes, version = release
 # The full version, including alpha/beta/rc tags
 # release = '2018.06.18'
