@@ -8,9 +8,14 @@ import sys
 import unittest2
 # 3) Local application/library specific imports.
 from browser_driver import browser
+from selenium.webdriver.common.keys import Keys
 
 
 class BrowserDriverTests(unittest2.TestCase):
+    @classmethod
+    def instance_failure(cls, test_name):
+        cls.failures.append(test_name)
+
     @classmethod
     def log_directory(cls, create_not_found=True):
         """Returns the directory where the log file should be stored
@@ -34,8 +39,8 @@ class BrowserDriverTests(unittest2.TestCase):
 
         return test_log_dir
 
-    def setUp(self):
-        self.browser = browser.WebBrowser(logger=self.log)
+    # def setUp(self):
+    #     self.browser = browser.WebBrowser(logger=self.log)
 
     @classmethod
     def setUpClass(cls):
@@ -60,6 +65,10 @@ class BrowserDriverTests(unittest2.TestCase):
         # For some reason, at least running in PyCharm, a newline is not created.  Explicitly adding it.
         cls.log.debug("Logger {0} obtained for usage by {1} \n".format(cls.log.name, cls.__name__))
 
+        cls.browser = browser.WebBrowser(logger=cls.log)
+
+        cls.failures = []
+
     def tearDown(self):
         """A set of actions to be used by all unittest2.TestCase.tearDown() methods.  This will
         enable functionality such as leaving the browser open if the test failed (and we are running
@@ -75,22 +84,35 @@ class BrowserDriverTests(unittest2.TestCase):
         """
         if self._outcome.errors[1][1] is None:
             self.log.info("{0}() completed successfully and no errors were observed.".format(self._testMethodName))
-            self.browser.quit()
+            # self.browser.quit()
         else:
-            self.log.warn("WARNING: Errors observed in execution of {0}().".format(self._testMethodName))
-            if self.browser.name is not "phantomjs":
-                self.log.warn("Did not call driver.quit() leaving {0} browser open for debugging.".format(self.browser.name))
-            else:
-                self.browser.quit()
+            self.log.warning("WARNING: Errors observed in execution of {0}().".format(self._testMethodName))
+            self.__class__.instance_failure(self._testMethodName)
+            # if self.browser.name is not "phantomjs":
+            #     self.log.warn("Did not call driver.quit() leaving {0} browser open for debugging.".format(self.browser.name))
+            # else:
+            #     self.browser.quit()
 
-    def test_browser_Firefox(self):
-        """Test that a Firefox browser can be used.  Test the name is not case sensitive."""
-        # Close out the browser already created to prevent ResourceWarning: unclosed <socket.socket fd=
-        self.browser.quit()
-        # Now let's make sure we have a FireFox browser to start with
-        self.browser = browser.WebBrowser("FireFOX")
-        self.assertIsNotNone(self.browser)
-        self.assertEqual(self.browser.name.lower(), "firefox")
+    @classmethod
+    def tearDownClass(cls):
+        if len(cls.failures) > 0:
+            msg = "\nWARNING: Failures were seen in tests.\n"
+
+            for test_name in cls.failures:
+                msg = "{0}\t{1}\n".format(msg, test_name)
+
+            cls.log.info(msg)
+
+        cls.browser.quit()
+
+    # def test_browser_Firefox(self):
+    #     """Test that a Firefox browser can be used.  Test the name is not case sensitive."""
+    #     # Close out the browser already created to prevent ResourceWarning: unclosed <socket.socket fd=
+    #     self.browser.quit()
+    #     # Now let's make sure we have a FireFox browser to start with
+    #     self.browser = browser.WebBrowser("FireFOX")
+    #     self.assertIsNotNone(self.browser)
+    #     self.assertEqual(self.browser.name.lower(), "firefox")
 
     def test_click_element(self):
         """This test ensures that the mouse clicks on a given element"""
@@ -99,8 +121,7 @@ class BrowserDriverTests(unittest2.TestCase):
         self.browser.url = url
         self.assertEqual(self.browser.url, url)
         self.browser.send_keys_by_name('q', 'great quotes of history')
-        xpath = r'//*[@id="tsf"]/div[2]/div/div[3]/center/input[1]'
-        self.browser.click_element_by_xpath(xpath)
+        self.browser.send_keys_by_name('q', Keys.RETURN)
         element = self.browser.find_element_by_id("resultStats")
         self.assertIsNotNone(element, "Did not find results statistics element on page.")
         self.log.info("Search button clicked, and results returned as expected.")
