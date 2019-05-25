@@ -2,6 +2,13 @@
 Release History for browser_driver
 ==============================================
 
+v0.1.4
+########
+
+Bug fix when using dst_pypi.bat to upload to production Python package index https://upload.pypi.org.
+Bug fix for Sphinx version not matching updating it to pull from configuration file.  Also moved some project
+information into the configuration file for use with Sphinx and setup.py.  One could argue that's too much
+refactoring for a bug fix version which is a descent argument; best laid plans of mice and men and such.
 
 v0.1.3
 ########

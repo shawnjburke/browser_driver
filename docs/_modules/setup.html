@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>setup &mdash; Browser Driver 0.1.3 documentation</title>
+  <title>setup &mdash; &#39;Browser Driver&#39; 0.1.4 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Browser Driver
+            <a href="../index.html" class="icon icon-home"> 'Browser Driver'
           
 
           
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.3
+                0.1.4
               </div>
             
           
@@ -103,7 +103,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Browser Driver</a>
+          <a href="../index.html">'Browser Driver'</a>
         
       </nav>
 
@@ -172,14 +172,10 @@
     <span class="k">return</span> <span class="n">packages</span></div>
 
 
-<div class="viewcode-block" id="version_builder"><a class="viewcode-back" href="../code/setup.html#setup.version_builder">[docs]</a><span class="k">def</span> <span class="nf">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="version_builder"><a class="viewcode-back" href="../code/setup.html#setup.version_builder">[docs]</a><span class="k">def</span> <span class="nf">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ini_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This method determines the next version number.  The assumption is the version numbering scheme is relying on</span>
 <span class="sd">    a timestamp based version, in contrast to Major.Minor.Revision type of structure.  THAT IS A NON-STANDARD SCHEME.&quot;&quot;&quot;</span>
-    <span class="n">ini_file_name</span> <span class="o">=</span> <span class="s2">&quot;browser_driver.cfg&quot;</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-
-    <span class="n">ini_file</span> <span class="o">=</span> <span class="n">configparser2</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
-    <span class="n">ini_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">ini_file_name</span><span class="p">)</span>
 
     <span class="c1"># read the Semantic Version.  To update it, go changein the file</span>
     <span class="n">semantic_version</span> <span class="o">=</span> <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;distribution&quot;</span><span class="p">][</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
@@ -203,7 +199,11 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">setup</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="s1">&#39;Shawn J Burke&#39;</span><span class="p">,</span>
+    <span class="n">ini_file_name</span> <span class="o">=</span> <span class="s2">&quot;browser_driver.cfg&quot;</span>
+    <span class="n">ini_file</span> <span class="o">=</span> <span class="n">configparser2</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="n">ini_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">ini_file_name</span><span class="p">)</span>
+
+    <span class="n">setup</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;project&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">],</span>
           <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;pypi.python@teamburke.com&#39;</span><span class="p">,</span>
           <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
                   <span class="c1"># Trove classifiers</span>
@@ -251,7 +251,7 @@
           <span class="p">},</span>
           <span class="n">test_suite</span><span class="o">=</span><span class="s2">&quot;browser_driver.tests.browser_tests&quot;</span><span class="p">,</span>
           <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://github.com/shawnjburke/browser_driver&quot;</span><span class="p">,</span>
-          <span class="n">version</span><span class="o">=</span><span class="n">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+          <span class="n">version</span><span class="o">=</span><span class="n">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ini_file</span><span class="o">=</span><span class="n">ini_file</span><span class="p">),</span>
           <span class="p">)</span>
 </pre></div>
 
@@ -265,7 +265,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Shawn J Burke
+        &copy; Copyright 2019, &#39;Shawn J Burke&#39;
 
     </p>
   </div>

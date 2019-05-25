@@ -32,17 +32,14 @@ To upgrade an existing installation add the additional switch
 Recent Changes
 ==============
 
-The full change log can be found at [TODO: update with link]
+The full change log can be found at https://shawnjburke.github.io/browser_driver/change_log.html
+
+v0.1.4 - Bug fix when using dst_pypi.bat to upload to production Python package index https://upload.pypi.org.
+Bug fix for Sphinx version not matching updating it to pull from configuration file.  Also moved some project
+information into the configuration file for use with Sphinx and setup.py.
 
 v0.1.3 - Bug fix where the setup process would update the cfg file key = value where the bat file was
 updating as key=value.
-
-v0.1.2 - Bug fix in dist_pypi.bat+browser_driver.cfg
-
-v0.1.1 - Updated setup.py adding find_and_list_packages() method.  Updated the dist_pypi.bat script in a number of ways.
-Including updating the date we uploaded to a pypi environment in the project cfg file.
-
-v0.1.0 - First development release to test.pypi.org with Semantic Version number scheme.
 
 
 Documentation
