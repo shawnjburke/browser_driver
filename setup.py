@@ -18,28 +18,24 @@ def find_and_list_packages():
     return packages
 
 
-def version_builder(write_new_version=True):
+def version_builder(write_new_version=True, ini_file=None):
     """This method determines the next version number.  The assumption is the version numbering scheme is relying on
     a timestamp based version, in contrast to Major.Minor.Revision type of structure.  THAT IS A NON-STANDARD SCHEME."""
-    ini_file_name = "browser_driver.cfg"
     now = datetime.now()
 
-    ini_file = configparser2.ConfigParser()
-    ini_file.read(ini_file_name)
-
     # read the Semantic Version.  To update it, go changein the file
-    semantic_version = ini_file["browser_driver"]["version"]
+    semantic_version = ini_file["distribution"]["version"]
     # Build an ISO timestamp of when the build was done
     military_time = int(str(now.hour) + "{:02d}".format(now.minute))
-    version_timestamp = "{0}.{1}.{2}.{3}".format(str(now.year), str(now.month), str(now.day), str(military_time))
-    build_number = int(ini_file["browser_driver"]["version_build_number"])
+    build_timestamp = "{0}.{1}.{2}.{3}".format(str(now.year), str(now.month), str(now.day), str(military_time))
+    build_number = int(ini_file["distribution"]["build_number"])
     build_number += 1
 
     # Update the some version information in the cfg file
     if write_new_version:
         # Timestamp and build number will increment each time, independent of version updating
-        ini_file["browser_driver"]["version_build_number"] = str(build_number)
-        ini_file["browser_driver"]["version_timestamp"] = version_timestamp
+        ini_file["distribution"]["build_number"] = str(build_number)
+        ini_file["distribution"]["build_timestamp"] = build_timestamp
 
         # Write the file to disk using all the values of the object in memory
         with open('browser_driver.cfg', 'w') as ini_disk_file:
@@ -49,7 +45,11 @@ def version_builder(write_new_version=True):
 
 
 if __name__ == "__main__":
-    setup(author='Shawn J Burke',
+    ini_file_name = "browser_driver.cfg"
+    ini_file = configparser2.ConfigParser()
+    ini_file.read(ini_file_name)
+
+    setup(author=ini_file["project"]["author"],
           author_email='pypi.python@teamburke.com',
           classifiers=[
                   # Trove classifiers
@@ -88,7 +88,7 @@ if __name__ == "__main__":
           long_description='\n' + open('README.rst').read(),
           long_description_content_type='text/x-rst',
           name='sjb.browserdriver',
-          # packages=['browser_driver'],
+          # packages=['distribution'],
           packages=find_and_list_packages(),
           project_urls={
             "Bug Tracker": "https://github.com/shawnjburke/browser_driver/issues/",
@@ -97,5 +97,5 @@ if __name__ == "__main__":
           },
           test_suite="browser_driver.tests.browser_tests",
           url="https://github.com/shawnjburke/browser_driver",
-          version=version_builder(write_new_version=True),
+          version=version_builder(write_new_version=True, ini_file=ini_file),
           )

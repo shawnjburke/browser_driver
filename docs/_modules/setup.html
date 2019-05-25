@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>setup &mdash; Browser Driver 0.1.2 documentation</title>
+  <title>setup &mdash; &#39;Browser Driver&#39; 0.1.4 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Browser Driver
+            <a href="../index.html" class="icon icon-home"> 'Browser Driver'
           
 
           
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.2
+                0.1.4
               </div>
             
           
@@ -103,7 +103,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Browser Driver</a>
+          <a href="../index.html">'Browser Driver'</a>
         
       </nav>
 
@@ -172,28 +172,24 @@
     <span class="k">return</span> <span class="n">packages</span></div>
 
 
-<div class="viewcode-block" id="version_builder"><a class="viewcode-back" href="../code/setup.html#setup.version_builder">[docs]</a><span class="k">def</span> <span class="nf">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="version_builder"><a class="viewcode-back" href="../code/setup.html#setup.version_builder">[docs]</a><span class="k">def</span> <span class="nf">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ini_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This method determines the next version number.  The assumption is the version numbering scheme is relying on</span>
 <span class="sd">    a timestamp based version, in contrast to Major.Minor.Revision type of structure.  THAT IS A NON-STANDARD SCHEME.&quot;&quot;&quot;</span>
-    <span class="n">ini_file_name</span> <span class="o">=</span> <span class="s2">&quot;browser_driver.cfg&quot;</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
 
-    <span class="n">ini_file</span> <span class="o">=</span> <span class="n">configparser2</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
-    <span class="n">ini_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">ini_file_name</span><span class="p">)</span>
-
     <span class="c1"># read the Semantic Version.  To update it, go changein the file</span>
-    <span class="n">semantic_version</span> <span class="o">=</span> <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;browser_driver&quot;</span><span class="p">][</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
+    <span class="n">semantic_version</span> <span class="o">=</span> <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;distribution&quot;</span><span class="p">][</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
     <span class="c1"># Build an ISO timestamp of when the build was done</span>
     <span class="n">military_time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">minute</span><span class="p">))</span>
-    <span class="n">version_timestamp</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{1}</span><span class="s2">.</span><span class="si">{2}</span><span class="s2">.</span><span class="si">{3}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">military_time</span><span class="p">))</span>
-    <span class="n">build_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;browser_driver&quot;</span><span class="p">][</span><span class="s2">&quot;version_build_number&quot;</span><span class="p">])</span>
+    <span class="n">build_timestamp</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">.</span><span class="si">{1}</span><span class="s2">.</span><span class="si">{2}</span><span class="s2">.</span><span class="si">{3}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">military_time</span><span class="p">))</span>
+    <span class="n">build_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;distribution&quot;</span><span class="p">][</span><span class="s2">&quot;build_number&quot;</span><span class="p">])</span>
     <span class="n">build_number</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># Update the some version information in the cfg file</span>
     <span class="k">if</span> <span class="n">write_new_version</span><span class="p">:</span>
         <span class="c1"># Timestamp and build number will increment each time, independent of version updating</span>
-        <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;browser_driver&quot;</span><span class="p">][</span><span class="s2">&quot;version_build_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">build_number</span><span class="p">)</span>
-        <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;browser_driver&quot;</span><span class="p">][</span><span class="s2">&quot;version_timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version_timestamp</span>
+        <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;distribution&quot;</span><span class="p">][</span><span class="s2">&quot;build_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">build_number</span><span class="p">)</span>
+        <span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;distribution&quot;</span><span class="p">][</span><span class="s2">&quot;build_timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">build_timestamp</span>
 
         <span class="c1"># Write the file to disk using all the values of the object in memory</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;browser_driver.cfg&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ini_disk_file</span><span class="p">:</span>
@@ -203,7 +199,11 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">setup</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="s1">&#39;Shawn J Burke&#39;</span><span class="p">,</span>
+    <span class="n">ini_file_name</span> <span class="o">=</span> <span class="s2">&quot;browser_driver.cfg&quot;</span>
+    <span class="n">ini_file</span> <span class="o">=</span> <span class="n">configparser2</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="n">ini_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">ini_file_name</span><span class="p">)</span>
+
+    <span class="n">setup</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">ini_file</span><span class="p">[</span><span class="s2">&quot;project&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">],</span>
           <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;pypi.python@teamburke.com&#39;</span><span class="p">,</span>
           <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
                   <span class="c1"># Trove classifiers</span>
@@ -242,7 +242,7 @@
           <span class="n">long_description</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;README.rst&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span>
           <span class="n">long_description_content_type</span><span class="o">=</span><span class="s1">&#39;text/x-rst&#39;</span><span class="p">,</span>
           <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sjb.browserdriver&#39;</span><span class="p">,</span>
-          <span class="c1"># packages=[&#39;browser_driver&#39;],</span>
+          <span class="c1"># packages=[&#39;distribution&#39;],</span>
           <span class="n">packages</span><span class="o">=</span><span class="n">find_and_list_packages</span><span class="p">(),</span>
           <span class="n">project_urls</span><span class="o">=</span><span class="p">{</span>
             <span class="s2">&quot;Bug Tracker&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/shawnjburke/browser_driver/issues/&quot;</span><span class="p">,</span>
@@ -251,7 +251,7 @@
           <span class="p">},</span>
           <span class="n">test_suite</span><span class="o">=</span><span class="s2">&quot;browser_driver.tests.browser_tests&quot;</span><span class="p">,</span>
           <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://github.com/shawnjburke/browser_driver&quot;</span><span class="p">,</span>
-          <span class="n">version</span><span class="o">=</span><span class="n">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+          <span class="n">version</span><span class="o">=</span><span class="n">version_builder</span><span class="p">(</span><span class="n">write_new_version</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ini_file</span><span class="o">=</span><span class="n">ini_file</span><span class="p">),</span>
           <span class="p">)</span>
 </pre></div>
 
@@ -265,7 +265,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Shawn J Burke
+        &copy; Copyright 2019, &#39;Shawn J Burke&#39;
 
     </p>
   </div>

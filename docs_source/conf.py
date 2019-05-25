@@ -19,19 +19,24 @@ from backports import configparser2
 from datetime import datetime
 import pkg_resources
 
-# -- Project information -----------------------------------------------------
-project = 'Browser Driver'
-now = datetime.now()
-copyright = '{0}, Shawn J Burke'.format(str(now.year))
-author = 'Shawn J Burke'
+# -- Shared Project Information stored in browser_driver.cfg -----------------
 ini_file = configparser2.ConfigParser()
 ini_file_name = "../browser_driver.cfg"
 ini_file.read(ini_file_name)
+
+
+# -- Project information -----------------------------------------------------
+# project = 'Browser Driver'
+project = ini_file["project"]["name"]
+# author = 'Shawn J Burke'
+author = ini_file["project"]["author"]
+now = datetime.now()
+copyright = '{0}, {1}'.format(str(now.year), author)
+
 # The short X.Y version
-version = ini_file["browser_driver"]["version"]
+version = ini_file["distribution"]["version"]
 # For our purposes, version = release
 # The full version, including alpha/beta/rc tags
-# release = '2018.06.18'
 release = version
 
 # -- General configuration ---------------------------------------------------
